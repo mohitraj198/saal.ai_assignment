@@ -1,0 +1,312 @@
+// Font
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+// Colors
+$color-green: #7FCD91;
+$color-black-primary: #000000;
+$color-black-secondary: #4D4646;
+$color-white-primary: #ffffff;
+$color-white-secondary: #F5EAEA;
+
+// Common Styles
+body{
+    font-family: 'Montserrat';
+    color: $color-black-primary;
+    box-sizing: border-box;
+    background-color: $color-white-secondary;
+}
+
+button, input {
+    font-family: 'Montserrat';
+}
+
+button {
+    background: $color-green;
+    font-size: 17px;
+    border: none;
+    cursor: pointer;
+    color: $color-white-primary;
+
+    &:hover {
+        background: #5bac6e;
+    }
+}
+
+ul {
+    list-style-type: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+
+a{
+    text-decoration: none;
+    color: $color-black-secondary;
+}
+
+// Loader
+.loader {
+    border: 10px solid $color-white-primary;
+    border-top: 10px solid $color-green;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 2s linear infinite;
+    margin-bottom: 20px;
+    margin: auto;
+}
+  
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+// Mobile Screens
+// App Style
+.App {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+
+    .users-container {
+        width: 80%;
+    }
+    
+
+    // search Bar
+    .search-form {
+        margin: 20px 0px;
+        display: flex;
+        justify-content: center;
+
+        input[type=text] {
+            width: 80%;
+            padding: 6px;
+            margin-top: 8px;
+            font-size: 17px;
+            border: none;
+            height: 40px;
+            border-top-left-radius: 10px;
+            border-bottom-left-radius: 10px;
+            
+            &:focus {
+                color: $color-green;
+            }
+        }
+
+        button {
+            padding: 6px 15px;
+            margin-top: 8px;
+            margin-right: 0px;
+            border-top-right-radius: 10px;
+            border-bottom-right-radius: 10px;
+        }
+    }
+
+    // user list container
+    .users-list {
+        min-width: 80%;
+        
+        .user-list_item {
+            display: flex;
+            align-items: center;
+            background-color: $color-white-primary;
+            box-shadow: 0 1px 2px 0 rgba(0,0,0,0.2);
+            transition: 0.3s;
+            margin-bottom: 10px;
+            border-radius: 10px;
+
+            .user-name {
+                cursor: pointer;
+            }
+
+            .user-thumbnail {
+                height: 40px;
+                width: 40px;
+                border-radius: 50%;
+                margin-right: 30px;
+                margin-left: 20px;
+                cursor: pointer;
+            }
+
+            // Image Lightbox and User Modal
+            .image-lightbox, .user-modal  {
+                width: 100%;
+                height: 100vh;
+                position: fixed;
+                top: 0;
+                left: 0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-color: rgba($color-black-primary, .7);
+                transition: opacity .4s ease, visibility .4s ease, transform .5s ease-in-out;
+                visibility: hidden;
+                opacity: 0;
+                transform: scale(0);
+                overflow: hidden;
+                z-index: 100;
+            }
+
+            .image-lightbox.open, .user-modal.open{
+                visibility: visible;
+                opacity: 1;
+                transform: scale(1);
+
+                button {
+                    position: fixed;
+                    top: 10px;
+                    right: 10px;
+                    width: 50px;
+                    height: 50px;
+                    border-radius: 50%;
+                    cursor: pointer;
+                }
+            }
+
+            .image-lightbox img {
+                width: auto;
+                max-width: 100%;
+                height: auto;
+                display: block;
+                line-height: 0;
+                box-sizing: border-box;
+                margin: 0 auto;
+                pad: 20px 0 20px;
+            }
+
+            // User Modal
+            .user-modal {
+                .modal-container {
+                    box-shadow: 0 1px 2px 0 rgba(0,0,0,0.2);
+                    display: flex;
+                    flex-direction: column;
+                    gap: 10px; 
+                    color: $color-white-primary;
+
+                    p {
+                        text-transform: capitalize;
+                    }
+    
+                    .modal-left {
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        align-items: center;
+                        background-color: $color-green;
+                        height: 200px;
+
+                        p {
+                            margin: 0;
+                        }
+
+                        p.modal-user-name {
+                            font-size: 20px;
+                            margin-bottom: 10px;
+                        }
+
+                        p.modal-user-email {
+                            font-weight: 500;
+                        }
+    
+                        img {
+                            border-radius: 50%;
+                        }
+                    }
+    
+                    .modal-right {
+                        background-color: $color-green;
+                        .row {
+                            padding: 0px 10px;
+                            display: flex;
+                            border-bottom: 1px solid $color-white-secondary;
+
+                            p.heading {
+                                font-weight: 500;
+                                min-width: 80px;
+                            }
+
+                            p.detail {
+                                padding: 0 30px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    // pagination
+    .pagination {
+        margin-bottom: 20px;
+        .pagination-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            button {
+                padding: 8px 16px;
+            }
+
+            ul {
+                display: none;
+                li {
+                    padding: 8px 16px;
+                    background-color: #e2e2e2;
+                    cursor: pointer;
+
+                    &:hover {
+                        background-color: rgba($color-green, 0.5);
+                    }
+                }
+                li.active {
+                    background-color: $color-green;
+                    color: $color-white-primary;
+                }
+            }
+        }
+    }
+}
+
+
+// For  iPads, Tablets
+@media only screen and (min-width: 481px) {
+    .App {
+        // pagination
+        .pagination {
+            .pagination-container {
+                ul {
+                    display: flex;
+                }
+            }
+        }
+    }  
+}
+
+// For Small screens, laptops and grater screen devices
+@media only screen and (min-width: 769px) {
+    .App {
+
+        .users-list {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            flex-wrap: wrap;
+            height: 350px;
+            column-gap: 10px;
+            .user-list_item {
+                width: 50%;
+            }
+        }
+
+        // pagination
+        .pagination {
+            .pagination-container {
+                justify-content: space-evenly;
+            }
+        }
+    }  
+}
