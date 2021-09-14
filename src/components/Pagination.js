@@ -17,6 +17,7 @@ const Pagination = ({ currentPage, setCurrentPage }) => {
             pageIndex.push(i)
         }
         setPageIndies(pageIndex)
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     useEffect(() => {

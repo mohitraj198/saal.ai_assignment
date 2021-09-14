@@ -13,22 +13,15 @@ const Searchbar = ({ users, setSearchUsers }) => {
         setSearchUsers(filterResult)
     }
 
-    // UserName Validation(allow only alpha, space and dot)
-    const checkValidInput = (text) => {
-        const regex = /^[a-zA-Z\s.]*$/;
-        if (regex.test(text)) {
-            search(text)
-        }
-    }
-
     const handleSearchInput = (e) => {
-        setInput(e.target.value)
-        checkValidInput(e.target.value)
+        const searchText = e.target.value.replace(/[^A-Za-z\s.]/ig, '')
+        setInput(searchText)
+        search(searchText)
     }
 
     const handleSearch = (e) => {
         e.preventDefault()
-        checkValidInput(input)
+        search(input)
     }
 
     return (

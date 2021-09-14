@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react'
 import { useHistory } from "react-router-dom"
 import queryString from 'query-string';
@@ -5,6 +6,7 @@ import Pagination from '../../components/Pagination'
 import Searchbar from '../../components/Searchbar'
 import ListItem from '../../components/ListItem'
 import { getUsers } from "../../services/user"
+import ListHeader from '../../components/ListHeader';
 
 const Users = () => {
     const history = useHistory()
@@ -16,6 +18,7 @@ const Users = () => {
     const [currentPage, setCurrentPage] = useState(page ? page : 1)
     const [loading, setLoading] = useState(true)
     const [searchUsers, setSearchUsers] = useState([])
+    const listHeadings = ["", "Name", "Email", "DOB", "Address", "Phone"]
 
     const fetchUserData = async () => {
         setLoading(true)
@@ -43,15 +46,18 @@ const Users = () => {
             />
 
             <div className="users-list">
-                {loading
-                    ? <div className="loader"></div>
-                    : searchUsers && searchUsers.map((user) => (
-                        <ListItem
-                            key={user.name.first + user.name.last}
-                            user={user}
-                        />
-                    ))
-                }
+                <ListHeader listHeadings={listHeadings} />
+                <div className="user-list-container">
+                    {loading
+                        ? <div className="loader"></div>
+                        : searchUsers && searchUsers.map((user) => (
+                            <ListItem
+                                key={user.name.first + user.name.last}
+                                user={user}
+                            />
+                        ))
+                    }
+                </div>
             </div>
 
             <div className="pagination">

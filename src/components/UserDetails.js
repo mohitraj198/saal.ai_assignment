@@ -1,4 +1,5 @@
 import React from 'react'
+import Moment from 'react-moment';
 
 const UserDetails = ({ user }) => {
     // User's Details
@@ -17,10 +18,6 @@ const UserDetails = ({ user }) => {
         dob: { date },
         phone
     } = user
-
-    // Formatting User's DOB
-    const newDate = new Date(date)
-    const formateDate = `${newDate.getDate()}/${newDate.getMonth()}/${newDate.getFullYear()}`
 
     // Formatting Mobile Number(Remove hyphen)
     const formattedPhone = phone.replace(/-/g, "")
@@ -48,7 +45,11 @@ const UserDetails = ({ user }) => {
                 </div>
                 <div className="row">
                     <p className="heading">DOB</p>
-                    <p className="detail">{formateDate}</p>
+                    <p className="detail">
+                        <Moment format="DD/MM/YYYY">
+                            {date}
+                        </Moment>
+                    </p>
                 </div>
                 <div className="row">
                     <p className="heading">Phone</p>
