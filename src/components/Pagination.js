@@ -18,6 +18,7 @@ const Pagination = ({ currentPage, setCurrentPage }) => {
         setInitialPageIndex(pageIndex)
     }, [])
 
+    // Previous Page Button Method
     const setPreviousPage = () => {
         if (currentPage > 1) {
             setCurrentPage(currentPage - 1)
@@ -32,6 +33,7 @@ const Pagination = ({ currentPage, setCurrentPage }) => {
         }
     }
 
+    // Next Page Button Method
     const setNextPage = () => {
         setCurrentPage(currentPage + 1)
 
@@ -43,6 +45,7 @@ const Pagination = ({ currentPage, setCurrentPage }) => {
         history.push("?page=" + (currentPage + 1))
     }
 
+    // Updating Page Number List in Pagination
     const setPageNumber = (val) => {
         if (currentPage !== val) {
             setCurrentPage(val)
