@@ -4,7 +4,7 @@ import queryString from 'query-string';
 import Pagination from '../../components/Pagination'
 import Searchbar from '../../components/Searchbar'
 import ListItem from '../../components/ListItem'
-import { userDataApi } from "../../services/User"
+import { getUsers } from "../../services/user"
 
 const Users = () => {
     const history = useHistory()
@@ -19,7 +19,7 @@ const Users = () => {
 
     const fetchUserData = async () => {
         setLoading(true)
-        const userData = await userDataApi(currentPage)
+        const userData = await getUsers(currentPage)
 
         if (userData) {
             setUsers(userData)
@@ -45,7 +45,7 @@ const Users = () => {
             <div className="users-list">
                 {loading
                     ? <div className="loader"></div>
-                    : searchUsers.map((user) => (
+                    : searchUsers && searchUsers.map((user) => (
                         <ListItem
                             key={user.name.first + user.name.last}
                             user={user}
