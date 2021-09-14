@@ -78,44 +78,29 @@ a{
     
 
     // search Bar
-    .form-container {
+    .search-form {
         display: flex;
-        flex-direction: column;
+        justify-content: center;
         margin: 20px 0;
-        align-items: center;
 
-        span{
-            color: $color-error;
-            padding: 5px 10px;
-            width: 84%;
+        input[type=text] {
+            width: 80%;
+            padding: 6px;
+            padding-left: 20px;
+            margin-top: 8px;
+            font-size: 17px;
+            border: none;
+            height: 40px;
+            border-top-left-radius: 10px;
             border-bottom-left-radius: 10px;
-            border-bottom-right-radius: 10px;
         }
 
-        .search-form {
-            display: flex;
-            justify-content: center;
-            width: 100%;
-    
-            input[type=text] {
-                width: 80%;
-                padding: 6px;
-                padding-left: 20px;
-                margin-top: 8px;
-                font-size: 17px;
-                border: none;
-                height: 40px;
-                border-top-left-radius: 10px;
-                border-bottom-left-radius: 10px;
-            }
-    
-            button {
-                padding: 6px 15px;
-                margin-top: 8px;
-                margin-right: 0px;
-                border-top-right-radius: 10px;
-                border-bottom-right-radius: 10px;
-            }
+        button {
+            padding: 6px 15px;
+            margin-top: 8px;
+            margin-right: 0px;
+            border-top-right-radius: 10px;
+            border-bottom-right-radius: 10px;
         }
     }
     
@@ -127,7 +112,7 @@ a{
         flex-direction: column;
         min-height: 350px;
         
-        .user-list_item {
+        .list_item {
             display: flex;
             align-items: center;
             background-color: $color-white-primary;
@@ -149,111 +134,57 @@ a{
                 cursor: pointer;
             }
 
-            // Image Lightbox and User Modal
-            .image-lightbox, .user-modal  {
-                width: 100%;
-                height: 100vh;
-                position: fixed;
-                top: 0;
-                left: 0;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                background-color: rgba($color-black-primary, .7);
-                transition: opacity .4s ease, visibility .4s ease, transform .5s ease-in-out;
-                visibility: hidden;
-                opacity: 0;
-                transform: scale(0);
-                overflow: hidden;
-                z-index: 100;
-
-                button {
-                    visibility: hidden;
-                }
-            }
-
-            .image-lightbox.open, .user-modal.open{
-                visibility: visible;
-                opacity: 1;
-                transform: scale(1);
-
-                button {
-                    position: fixed;
-                    top: 10px;
-                    right: 10px;
-                    width: 50px;
-                    height: 50px;
-                    border-radius: 50%;
-                    cursor: pointer;
-                    visibility: visible;
-                }
-            }
-
-            .image-lightbox img {
-                width: auto;
-                max-width: 100%;
-                height: auto;
-                display: block;
-                line-height: 0;
-                box-sizing: border-box;
-                margin: 0 auto;
-                pad: 20px 0 20px;
-            }
-
-            // User Modal
-            .user-modal {
-                .modal-container {
-                    box-shadow: 0 1px 2px 0 rgba(0,0,0,0.2);
+            // User Details
+            .user_details-container {
+                gap: 10px; 
+                box-shadow: 0 1px 2px 0 rgba(0,0,0,0.2);
                     display: flex;
                     flex-direction: column;
-                    gap: 10px; 
                     color: $color-white-primary;
+                p {
+                    text-transform: capitalize;
+                }
+
+                .user_details-left {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    background-color: $color-green;
+                    height: 200px;
 
                     p {
-                        text-transform: capitalize;
+                        margin: 0;
                     }
-    
-                    .modal-left {
+
+                    p.user_details-user_name {
+                        font-size: 20px;
+                        margin-bottom: 10px;
+                    }
+
+                    p.user_details-user_email {
+                        font-weight: 500;
+                    }
+
+                    img {
+                        border-radius: 50%;
+                    }
+                }
+
+                .user_details-right {
+                    background-color: $color-green;
+                    .row {
+                        padding: 0px 10px;
                         display: flex;
-                        flex-direction: column;
-                        justify-content: center;
-                        align-items: center;
-                        background-color: $color-green;
-                        height: 200px;
+                        border-bottom: 1px solid $color-white-secondary;
 
-                        p {
-                            margin: 0;
-                        }
-
-                        p.modal-user-name {
-                            font-size: 20px;
-                            margin-bottom: 10px;
-                        }
-
-                        p.modal-user-email {
+                        p.heading {
                             font-weight: 500;
+                            min-width: 80px;
                         }
-    
-                        img {
-                            border-radius: 50%;
-                        }
-                    }
-    
-                    .modal-right {
-                        background-color: $color-green;
-                        .row {
-                            padding: 0px 10px;
-                            display: flex;
-                            border-bottom: 1px solid $color-white-secondary;
 
-                            p.heading {
-                                font-weight: 500;
-                                min-width: 80px;
-                            }
-
-                            p.detail {
-                                padding: 0 30px;
-                            }
+                        p.detail {
+                            padding: 0 30px;
                         }
                     }
                 }
@@ -291,6 +222,57 @@ a{
             }
         }
     }
+}
+
+// Image Lightbox and Modal
+.image-lightbox, .modal  {
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba($color-black-primary, .7);
+    transition: opacity .4s ease, visibility .4s ease, transform .5s ease-in-out;
+    visibility: hidden;
+    opacity: 0;
+    transform: scale(0);
+    overflow: hidden;
+    z-index: 100;
+
+    button {
+        visibility: hidden;
+    }
+}
+
+.image-lightbox.open, .modal.open{
+    visibility: visible;
+    opacity: 1;
+    transform: scale(1);
+
+    button {
+        position: fixed;
+        top: 10px;
+        right: 10px;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        cursor: pointer;
+        visibility: visible;
+    }
+}
+
+.image-lightbox img {
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    display: block;
+    line-height: 0;
+    box-sizing: border-box;
+    margin: 0 auto;
+    pad: 20px 0 20px;
 }
 
 

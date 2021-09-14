@@ -1,6 +1,6 @@
 import React from "react"
 import "./assets/styles/style.scss"
-import Users from "./views/Users"
+import Users from "./views/User/Users"
 import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom"
 
 function App() {

@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { useHistory } from "react-router-dom"
 import queryString from 'query-string';
-import Pagination from '../components/Pagination'
-import Searchbar from '../components/Searchbar'
-import ListItem from '../components/ListItem'
+import Pagination from '../../components/Pagination'
+import Searchbar from '../../components/Searchbar'
+import ListItem from '../../components/ListItem'
+import { userDataApi } from "../../services/User"
 
 const Users = () => {
     const history = useHistory()
@@ -16,21 +17,16 @@ const Users = () => {
     const [loading, setLoading] = useState(true)
     const [searchUsers, setSearchUsers] = useState([])
 
-    // Fetching User's Data
     const fetchUserData = async () => {
-        try {
-            const url = `https://randomuser.me/api/?page=${currentPage}&results=10`
-            setLoading(true)
-            const response = await fetch(url)
-            const users = await response.json()
+        setLoading(true)
+        const userData = await userDataApi(currentPage)
 
-            setUsers(users.results)
-            setSearchUsers(users.results)
-            setLoading(false)
-        } catch (err) {
-            console.log(err)
-            setLoading(false)
+        if (userData) {
+            setUsers(userData)
+            setSearchUsers(userData)
         }
+
+        setLoading(false)
     }
 
     useEffect(() => {
@@ -49,8 +45,11 @@ const Users = () => {
             <div className="users-list">
                 {loading
                     ? <div className="loader"></div>
-                    : searchUsers.map((user, index) => (
-                        <ListItem key={index} user={user} loading={loading} />
+                    : searchUsers.map((user) => (
+                        <ListItem
+                            key={user.name.first + user.name.last}
+                            user={user}
+                        />
                     ))
                 }
             </div>

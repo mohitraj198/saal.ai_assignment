@@ -11,6 +11,7 @@ const Pagination = ({ currentPage, setCurrentPage }) => {
     const [initialPageIndex, setInitialPageIndex] = useState([1, 2, 3, 4, 5])
 
     useEffect(() => {
+        console.log(initialPageIndex)
         const pageIndex = []
         for (let i = page; i < page + 5; i++) {
             pageIndex.push(i)
@@ -27,7 +28,6 @@ const Pagination = ({ currentPage, setCurrentPage }) => {
                 const newPageList = initialPageIndex.map(val => val - 1)
                 setInitialPageIndex(newPageList)
             }
-
 
             history.push("?page=" + (currentPage - 1))
         }

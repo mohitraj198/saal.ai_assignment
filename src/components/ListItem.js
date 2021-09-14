@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
 import ImageLightbox from './ImageLightbox'
 import Modal from './Modal'
+import UserDetails from './UserDetails'
 
 const ListItem = ({ user }) => {
     const { name: { title, first, last }, picture: { thumbnail, large } } = user
     const [isImageLightboxOpen, setIsImageLightboxOpen] = useState(false)
-    const [isUserModalOpen, setIsUserModalOpen] = useState(false)
+    const [isModalOpen, setIsModalOpen] = useState(false)
 
     // Lightbox Handler
     const handleLightbox = () => {
@@ -14,11 +15,11 @@ const ListItem = ({ user }) => {
 
     // Modal Handler for User
     const handleUserModal = () => {
-        setIsUserModalOpen(true)
+        setIsModalOpen(true)
     }
 
     return (
-        <div className="user-list_item">
+        <div className="list_item">
             <img onClick={handleLightbox} className="user-thumbnail" src={thumbnail} alt="User's Profile" />
             <p onClick={handleUserModal} className="user-name">{title}. {first} {last}</p>
 
@@ -28,11 +29,9 @@ const ListItem = ({ user }) => {
                 setIsImageLightboxOpen={setIsImageLightboxOpen}
             />
 
-            <Modal
-                user={user}
-                isUserModalOpen={isUserModalOpen}
-                setIsUserModalOpen={setIsUserModalOpen}
-            />
+            <Modal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen}>
+                <UserDetails user={user} />
+            </Modal>
         </div>
     )
 }
