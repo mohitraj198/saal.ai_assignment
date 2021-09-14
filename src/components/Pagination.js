@@ -8,25 +8,31 @@ const Pagination = ({ currentPage, setCurrentPage }) => {
     const query = queryString.parse(location.search);
     const page = Number(query.page)
 
-    const [initialPageIndex, setInitialPageIndex] = useState([1, 2, 3, 4, 5])
+    const [initialPageIndies, setInitialPageIndies] = useState([1, 2, 3, 4, 5])
+    const [pageIndies, setPageIndies] = useState([])
 
     useEffect(() => {
-        console.log(initialPageIndex)
         const pageIndex = []
         for (let i = page; i < page + 5; i++) {
             pageIndex.push(i)
         }
-        setInitialPageIndex(pageIndex)
+        setPageIndies(pageIndex)
     }, [])
+
+    useEffect(() => {
+        if (pageIndies.length) {
+            setInitialPageIndies(pageIndies)
+        }
+    }, [pageIndies])
 
     // Previous Page Button Method
     const setPreviousPage = () => {
         if (currentPage > 1) {
             setCurrentPage(currentPage - 1)
 
-            if (currentPage === initialPageIndex[1] && initialPageIndex[0] !== 1) {
-                const newPageList = initialPageIndex.map(val => val - 1)
-                setInitialPageIndex(newPageList)
+            if (initialPageIndies[0] !== 1) {
+                const newPageList = initialPageIndies.map(val => val - 1)
+                setInitialPageIndies(newPageList)
             }
 
             history.push("?page=" + (currentPage - 1))
@@ -37,9 +43,9 @@ const Pagination = ({ currentPage, setCurrentPage }) => {
     const setNextPage = () => {
         setCurrentPage(currentPage + 1)
 
-        if (currentPage === initialPageIndex[initialPageIndex.length - 2]) {
-            const newPageList = initialPageIndex.map(val => val + 1)
-            setInitialPageIndex(newPageList)
+        if (currentPage === initialPageIndies[initialPageIndies.length - 2]) {
+            const newPageList = initialPageIndies.map(val => val + 1)
+            setInitialPageIndies(newPageList)
         }
 
         history.push("?page=" + (currentPage + 1))
@@ -50,12 +56,12 @@ const Pagination = ({ currentPage, setCurrentPage }) => {
         if (currentPage !== val) {
             setCurrentPage(val)
 
-            if (initialPageIndex.indexOf(val) > 3) {
-                const newPageList = initialPageIndex.map(val => val + 1)
-                setInitialPageIndex(newPageList)
-            } else if (initialPageIndex.indexOf(val) < 1 && initialPageIndex[0] !== 1) {
-                const newPageList = initialPageIndex.map(val => val - 1)
-                setInitialPageIndex(newPageList)
+            if (initialPageIndies.indexOf(val) > 3) {
+                const newPageList = initialPageIndies.map(val => val + 1)
+                setInitialPageIndies(newPageList)
+            } else if (initialPageIndies.indexOf(val) < 1 && initialPageIndies[0] !== 1) {
+                const newPageList = initialPageIndies.map(val => val - 1)
+                setInitialPageIndies(newPageList)
             }
 
             history.push("?page=" + val)
@@ -69,11 +75,12 @@ const Pagination = ({ currentPage, setCurrentPage }) => {
             </button>
             <ul>
                 {
-                    initialPageIndex.map(val => {
+                    initialPageIndies.map((val, index) => {
                         return (
                             <li
                                 className={currentPage === val ? "active" : ""}
-                                onClick={() => setPageNumber(val)} key={val}
+                                onClick={() => setPageNumber(val)}
+                                key={index}
                             >
                                 {val}
                             </li>)

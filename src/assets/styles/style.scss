@@ -141,7 +141,8 @@ a{
                     display: flex;
                     flex-direction: column;
                     color: $color-white-primary;
-                p {
+                
+                    p {
                     text-transform: capitalize;
                 }
 
@@ -157,12 +158,12 @@ a{
                         margin: 0;
                     }
 
-                    p.user_details-user_name {
+                    p.user_details_user-name {
                         font-size: 20px;
                         margin-bottom: 10px;
                     }
 
-                    p.user_details-user_email {
+                    p.user_details_user-email {
                         font-weight: 500;
                     }
 
