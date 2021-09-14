@@ -14,7 +14,7 @@ const Pagination = ({ currentPage, setCurrentPage }) => {
     useEffect(() => {
         const pageIndex = []
         for (let i = page; i < page + 5; i++) {
-            pageIndex.push(i - 1)
+            pageIndex.push(i)
         }
         setPageIndies(pageIndex)
     }, [])
