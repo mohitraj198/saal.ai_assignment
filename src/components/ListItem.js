@@ -7,10 +7,12 @@ const ListItem = ({ user }) => {
     const [isImageLightboxOpen, setIsImageLightboxOpen] = useState(false)
     const [isUserModalOpen, setIsUserModalOpen] = useState(false)
 
+    // Lightbox Handler
     const handleLightbox = () => {
         setIsImageLightboxOpen(true)
     }
 
+    // Modal Handler for User
     const handleUserModal = () => {
         setIsUserModalOpen(true)
     }

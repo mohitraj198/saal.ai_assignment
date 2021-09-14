@@ -1,6 +1,7 @@
 import React from 'react'
 
 const Modal = ({ user, isUserModalOpen, setIsUserModalOpen }) => {
+    // User's Details
     const {
         name: { title, first, last },
         picture: { large },
@@ -17,6 +18,7 @@ const Modal = ({ user, isUserModalOpen, setIsUserModalOpen }) => {
         phone,
     } = user
 
+    // Formatting User's DOB
     const newDate = new Date(date)
     const formateDate = `${newDate.getDate()}/${newDate.getMonth()}/${newDate.getFullYear()}`
 
@@ -32,6 +34,7 @@ const Modal = ({ user, isUserModalOpen, setIsUserModalOpen }) => {
                     <p className="modal-user-name">{title}. {first} {last}</p>
                     <p className="modal-user-email">{email}</p>
                 </div>
+
                 <div className="modal-right">
                     <div className="row">
                         <p className="heading">Gender</p>

@@ -7,6 +7,7 @@ $color-black-primary: #000000;
 $color-black-secondary: #4D4646;
 $color-white-primary: #ffffff;
 $color-white-secondary: #F5EAEA;
+$color-error: #e21d41;
 
 // Common Styles
 body{
@@ -77,38 +78,54 @@ a{
     
 
     // search Bar
-    .search-form {
-        margin: 20px 0px;
+    .form-container {
         display: flex;
-        justify-content: center;
+        flex-direction: column;
+        margin: 20px 0;
+        align-items: center;
 
-        input[type=text] {
-            width: 80%;
-            padding: 6px;
-            margin-top: 8px;
-            font-size: 17px;
-            border: none;
-            height: 40px;
-            border-top-left-radius: 10px;
+        span{
+            color: $color-error;
+            padding: 5px 10px;
+            width: 84%;
             border-bottom-left-radius: 10px;
-            
-            &:focus {
-                color: $color-green;
-            }
-        }
-
-        button {
-            padding: 6px 15px;
-            margin-top: 8px;
-            margin-right: 0px;
-            border-top-right-radius: 10px;
             border-bottom-right-radius: 10px;
         }
+
+        .search-form {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+    
+            input[type=text] {
+                width: 80%;
+                padding: 6px;
+                padding-left: 20px;
+                margin-top: 8px;
+                font-size: 17px;
+                border: none;
+                height: 40px;
+                border-top-left-radius: 10px;
+                border-bottom-left-radius: 10px;
+            }
+    
+            button {
+                padding: 6px 15px;
+                margin-top: 8px;
+                margin-right: 0px;
+                border-top-right-radius: 10px;
+                border-bottom-right-radius: 10px;
+            }
+        }
     }
+    
 
     // user list container
     .users-list {
         min-width: 80%;
+        display: flex;
+        flex-direction: column;
+        min-height: 350px;
         
         .user-list_item {
             display: flex;
@@ -149,6 +166,10 @@ a{
                 transform: scale(0);
                 overflow: hidden;
                 z-index: 100;
+
+                button {
+                    visibility: hidden;
+                }
             }
 
             .image-lightbox.open, .user-modal.open{
@@ -164,6 +185,7 @@ a{
                     height: 50px;
                     border-radius: 50%;
                     cursor: pointer;
+                    visibility: visible;
                 }
             }
 
@@ -289,14 +311,15 @@ a{
 // For Small screens, laptops and grater screen devices
 @media only screen and (min-width: 769px) {
     .App {
-
+        // user list
         .users-list {
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
             flex-wrap: wrap;
-            height: 350px;
             column-gap: 10px;
+            height: 350px;
+            
             .user-list_item {
                 width: 50%;
             }
