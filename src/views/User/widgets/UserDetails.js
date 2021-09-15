@@ -1,5 +1,5 @@
 import React from 'react'
-import Moment from 'react-moment';
+import moment from 'moment'
 
 const UserDetails = ({ user }) => {
     // User's Details
@@ -21,39 +21,39 @@ const UserDetails = ({ user }) => {
 
     // Formatting Mobile Number(Remove hyphen)
     const formattedPhone = phone.replace(/-/g, "")
+    // Formatting Date
+    const formattedDate = moment(date).format("DD/MM/YYYY")
 
     return (
         <div className="user_details-container">
             <div className="user_details-left">
                 <img src={large} alt="Profile" />
-                <p className="user_details_user-name">{title}. {first} {last}</p>
-                <p className="user_details_user-email">{email}</p>
+                <span className="user_details_user-name">{title}. {first} {last}</span>
+                <span className="user_details_user-email">{email}</span>
             </div>
 
             <div className="user_details-right">
                 <div className="row">
-                    <p className="heading">Gender</p>
-                    <p className="detail">{gender}</p>
+                    <span className="heading">Gender</span>
+                    <span className="detail">{gender}</span>
                 </div>
                 <div className="row">
-                    <p className="heading">Address</p>
-                    <p className="detail">{number} {name}, {city}, {state}, {country}</p>
+                    <span className="heading">Address</span>
+                    <span className="detail">{number} {name}, {city}, {state}, {country}</span>
                 </div>
                 <div className="row">
-                    <p className="heading">Post Code</p>
-                    <p className="detail">{postcode}</p>
+                    <span className="heading">Post Code</span>
+                    <span className="detail">{postcode}</span>
                 </div>
                 <div className="row">
-                    <p className="heading">DOB</p>
-                    <p className="detail">
-                        <Moment format="DD/MM/YYYY">
-                            {date}
-                        </Moment>
-                    </p>
+                    <span className="heading">DOB</span>
+                    <span className="detail">
+                        {formattedDate}
+                    </span>
                 </div>
                 <div className="row">
-                    <p className="heading">Phone</p>
-                    <p className="detail">{formattedPhone}</p>
+                    <span className="heading">Phone</span>
+                    <span className="detail">{formattedPhone}</span>
                 </div>
             </div>
         </div>

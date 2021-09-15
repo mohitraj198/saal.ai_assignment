@@ -10,14 +10,18 @@ const Pagination = ({ currentPage, setCurrentPage }) => {
 
     const [initialPageIndies, setInitialPageIndies] = useState([1, 2, 3, 4, 5])
     const [pageIndies, setPageIndies] = useState([])
+    const [isDisabled, setIsDisabled] = useState(true)
 
     useEffect(() => {
+        if (page !== 1) {
+            setIsDisabled(false)
+        }
         const pageIndex = []
         for (let i = page; i < page + 5; i++) {
             pageIndex.push(i)
         }
         setPageIndies(pageIndex)
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line
     }, [])
 
     useEffect(() => {
@@ -28,6 +32,9 @@ const Pagination = ({ currentPage, setCurrentPage }) => {
 
     // Previous Page Button Method
     const setPreviousPage = () => {
+        if ((currentPage - 1) === 1) {
+            setIsDisabled(true)
+        }
         if (currentPage > 1) {
             setCurrentPage(currentPage - 1)
 
@@ -47,6 +54,10 @@ const Pagination = ({ currentPage, setCurrentPage }) => {
         if (currentPage === initialPageIndies[initialPageIndies.length - 2]) {
             const newPageList = initialPageIndies.map(val => val + 1)
             setInitialPageIndies(newPageList)
+        }
+
+        if (currentPage + 1 > 1) {
+            setIsDisabled(false)
         }
 
         history.push("?page=" + (currentPage + 1))
@@ -71,7 +82,7 @@ const Pagination = ({ currentPage, setCurrentPage }) => {
 
     return (
         <div className="pagination-container">
-            <button onClick={setPreviousPage}>
+            <button disabled={isDisabled} className={isDisabled ? "prevBtn disableBtn" : "prevBtn"} onClick={setPreviousPage}>
                 <i className="fa fa-angle-left" aria-hidden="true"></i>
             </button>
             <ul>
@@ -88,7 +99,7 @@ const Pagination = ({ currentPage, setCurrentPage }) => {
                     })
                 }
             </ul>
-            <button onClick={setNextPage}>
+            <button className="nextBtn" onClick={setNextPage}>
                 <i className="fa fa-angle-right" aria-hidden="true"></i>
             </button>
         </div>

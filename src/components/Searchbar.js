@@ -1,8 +1,6 @@
-import React, { useState } from 'react'
+import React from 'react'
 
-const Searchbar = ({ users, setSearchUsers }) => {
-    const [input, setInput] = useState('')
-
+const Searchbar = ({ users, setSearchUsers, searchUser, setSearchUser }) => {
     // searching by username
     const search = (text) => {
         const filterResult = users.filter(user => {
@@ -15,18 +13,18 @@ const Searchbar = ({ users, setSearchUsers }) => {
 
     const handleSearchInput = (e) => {
         const searchText = e.target.value.replace(/[^A-Za-z\s.]/ig, '')
-        setInput(searchText)
+        setSearchUser(searchText)
         search(searchText)
     }
 
     const handleSearch = (e) => {
         e.preventDefault()
-        search(input)
+        search(searchUser)
     }
 
     return (
         <form className="search-form">
-            <input onChange={handleSearchInput} type="text" placeholder="Search" value={input} name="text" className="search-input" />
+            <input onChange={handleSearchInput} type="text" placeholder="Search" value={searchUser} name="text" className="search-input" />
             <button onClick={handleSearch} className="search-button"><i className="fa fa-search"></i></button>
         </form>
     )

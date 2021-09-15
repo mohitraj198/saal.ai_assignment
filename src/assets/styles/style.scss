@@ -10,7 +10,15 @@ $color-white-secondary: #F5EAEA;
 $color-error: #e21d41;
 
 // Common Styles
+#root {
+    height: 100%;
+}
+
 body{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100vh;
     font-family: 'Montserrat';
     color: $color-black-primary;
     box-sizing: border-box;
@@ -79,6 +87,8 @@ a{
         flex-grow: 1;
         flex-direction: column;
         width: 80%;
+        justify-content: center;
+        align-items: center;
     }
     
     // search Bar
@@ -113,6 +123,7 @@ a{
     // user list container
     .users-list {
         min-width: 80%;
+        width: 100%;
         display: flex;
         flex-direction: column;
         flex-grow: 1;
@@ -126,10 +137,13 @@ a{
             margin-bottom: 20px;
             display: flex;
             flex-direction: column;
-            flex-grow: 1;
-            height: 60%;
+            height: 95%;
             overflow-y: scroll;
             overflow-x: hidden;
+
+            h2 {
+                text-align: center;
+            }
 
             .list_item {
                 display: flex;
@@ -146,16 +160,19 @@ a{
                     .row {
                         display: flex;
 
-                        p{
+                        span{
                             padding: 0 10px;
                             margin: 0;
                             line-height: 1.5;
                             font-size: 12px;
-        
-                            .user-name {
-                                cursor: pointer;
-                            }
-                            
+                        }
+
+                        .user-name {
+                            cursor: pointer;
+                        }
+                        .user-name-text{
+                            font-weight: 600;
+                            color: $color-green;
                         }
 
                         .heading {
@@ -182,7 +199,7 @@ a{
                     flex-direction: column;
                     color: $color-white-primary;
                 
-                    p {
+                    span {
                         text-transform: capitalize;
                     }
     
@@ -195,16 +212,16 @@ a{
                         height: 200px;
                         border-radius: 10px;
     
-                        p {
+                        span {
                             margin: 0;
                         }
     
-                        p.user_details_user-name {
+                        span.user_details_user-name {
                             font-size: 20px;
                             margin-bottom: 10px;
                         }
     
-                        p.user_details_user-email {
+                        span.user_details_user-email {
                             font-weight: 500;
                         }
     
@@ -218,15 +235,15 @@ a{
                         padding: 20px 0;
                         border-radius: 10px;
                         .row {
-                            padding: 0px 10px;
+                            padding: 5px 20px;
                             display: flex;
     
-                            p.heading {
+                            span.heading {
                                 font-weight: 500;
                                 min-width: 80px;
                             }
     
-                            p.detail {
+                            span.detail {
                                 padding: 0 30px;
                             }
                         }
@@ -248,7 +265,24 @@ a{
                 padding: 8px 16px;
             }
 
+            .prevBtn {
+                border-bottom-left-radius: 10px;
+                border-top-left-radius: 10px;
+            }
+
+            .nextBtn {
+                border-bottom-right-radius: 10px;
+                border-top-right-radius: 10px;
+            }
+
+            .disableBtn {
+                background-color: #e2e2e2;
+                cursor: pointer;
+                color: $color-black-secondary;
+            }
+
             ul {
+                margin: 0 10px;
                 li {
                     padding: 8px 16px;
                     background-color: #e2e2e2;
@@ -330,7 +364,7 @@ a{
                         .row {
                             display: flex;
     
-                            p{
+                            span{
                                 font-size: 14px;
             
                                 .user-name {
@@ -361,12 +395,16 @@ a{
 // For Small screens, laptops and grater screen devices
 @media only screen and (min-width: 769px) {
     .App {
+        // search Bar
+    .search-form {
+        max-width: 400px;
+    }
         // user list
         .users-list {
             .user-list-container {
                 .list_item {
                     flex-direction: row;
-                    p{
+                    span{
                         font-size: 16px;  
                     }
                     .user-thumbnail {
@@ -396,7 +434,7 @@ a{
             flex-direction: column;
             justify-content: flex-start;
             flex-wrap: wrap;
-
+    
             .list-header {
                 display: flex;
                 justify-content: space-around;
@@ -409,33 +447,32 @@ a{
     
                 p{
                     padding: 0 10px;
+                    text-align: left;
+                }
+
+                p:first-child {
+                    width: 4%;
                 }
 
                 .list-header-headingName {
-                    width: 20%;
-                    text-align: left;
-                    margin-left: 10%;
+                    width: 13%;
                 }
                 .list-header-headingEmail {
-                    width: 30%;
-                    text-align: center;
+                    width: 20%;
                 }
                 .list-header-headingDOB {
-                    width: 10%;
-                    text-align: center;
+                    width: 15%;
                 }
                 .list-header-headingAddress {
-                    text-align: center;
-                    width: 50%;
+                    width: 30%;
                 }
                 .list-header-headingPhone {
-                    width: 20%;
-                    margin-right: 10px;
-                    text-align: left;
+                    width: 15%;
                 }
             }
 
             .user-list-container {
+                height: 80%;
                 
                 .list_item {
                     display: flex;
@@ -447,13 +484,14 @@ a{
                     border-radius: 10px;
                     flex-direction: row;
                     padding: 20px 0;
-
+                    
                     .content {
                         display: flex;
                         justify-content: space-between;
                         flex-grow: 1;
+                        align-items: center;
 
-                        p{
+                        span{
                             flex: 1 1 auto;
                             justify-self: flex-start;
                         }
@@ -463,8 +501,9 @@ a{
                             flex-grow: 1;
                             flex-direction: row;
     
-                            p{
+                            span{
                                 font-size: 16px;
+                                text-align: left;
                                 .user-name {
                                     cursor: pointer;
                                 }
@@ -476,25 +515,23 @@ a{
 
                         .user-name {
                             cursor: pointer;
-                            width: 20%;
+                            width: 14%;
                         }
                         .user-email{
                             width: 20%;
-                            text-align: center;
-                            p{
+                            span{
                                 overflow-wrap: anywhere;
                             }  
                         }
                         .user-phone{
-                            width: 20%;
-                            text-align: center;
+                            width: 15%;
                         }
                         .user-address{
                             width: 30%;
-                            text-align: center;
+                            padding: 0 10px;
                         }
                         .user-dob {
-                            width: 10%;
+                            width: 15%;
                         }
                     }
     
@@ -502,8 +539,7 @@ a{
                         height: 40px;
                         width: 40px;
                         border-radius: 50%;
-                        margin-right: 30px;
-                        margin-left: 20px;
+                        margin-right: 0px;
                         cursor: pointer;
                     }
                 }

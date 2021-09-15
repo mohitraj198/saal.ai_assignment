@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import ImageLightbox from './ImageLightbox'
-import Modal from './Modal'
+import ImageLightbox from '../../../components/ImageLightbox'
+import Modal from '../../../components/Modal'
 import UserDetails from './UserDetails'
-import Moment from 'react-moment';
+import moment from 'moment'
 
 const ListItem = ({ user }) => {
     // User's Details
@@ -22,6 +22,8 @@ const ListItem = ({ user }) => {
 
     // Formatting Mobile Number(Remove hyphen)
     const formattedPhone = phone.replace(/-/g, "")
+    // Formatting Date
+    const formattedDate = moment(date).format("DD/MM/YYYY")
 
     const [isImageLightboxOpen, setIsImageLightboxOpen] = useState(false)
     const [isModalOpen, setIsModalOpen] = useState(false)
@@ -41,28 +43,26 @@ const ListItem = ({ user }) => {
             <img onClick={handleLightbox} className="user-thumbnail" src={thumbnail} alt="User's Profile" />
             <div className="content">
                 <div className="row user-name">
-                    <p className="heading">Name:</p>
-                    <p onClick={handleUserModal} className="">{title}. {first} {last}</p>
+                    <span className="heading">Name:</span>
+                    <span onClick={handleUserModal} className="user-name-text">{title}. {first} {last}</span>
                 </div>
                 <div className="row user-email">
-                    <p className="heading">Email:</p>
-                    <p className="">{email}</p>
+                    <span className="heading">Email:</span>
+                    <span >{email}</span>
                 </div>
                 <div className="row user-dob">
-                    <p className="heading">DOB:</p>
-                    <p className="">
-                        <Moment format="DD/MM/YYYY">
-                            {date}
-                        </Moment>
-                    </p>
+                    <span className="heading">DOB:</span>
+                    <span >
+                        {formattedDate}
+                    </span>
                 </div>
                 <div className="row user-address">
-                    <p className="heading">Address:</p>
-                    <p className="">{number} {name}, {city} {country}, {postcode}</p>
+                    <span className="heading">Address:</span>
+                    <span >{number} {name}, {city} {country}, {postcode}</span>
                 </div>
                 <div className="row user-phone">
-                    <p className="heading">Phone:</p>
-                    <p className="">{formattedPhone}</p>
+                    <span className="heading">Phone:</span>
+                    <span >{formattedPhone}</span>
                 </div>
             </div>
 
@@ -72,7 +72,7 @@ const ListItem = ({ user }) => {
                 setIsImageLightboxOpen={setIsImageLightboxOpen}
             />
 
-            <Modal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen}>
+            <Modal isModalOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
                 <UserDetails user={user} />
             </Modal>
         </div>
