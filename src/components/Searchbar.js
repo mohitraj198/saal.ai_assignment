@@ -1,11 +1,14 @@
 import React from 'react'
 
-const Searchbar = ({ onSearch, searchInput, setSearchInput, ...restProps }) => {
+/**
+ * @componentName Searchbar
+ * @description this component is use for searching
+ */
 
+const Searchbar = ({ onSearch, searchInput, ...restProps }) => {
     const handleSearchInput = (e) => {
         const searchText = e.target.value.replace(/[^A-Za-z\s.]/ig, '')
-        setSearchInput(searchText)
-        onSearch(searchInput)
+        onSearch(searchText)
     }
 
     const handleSearch = (e) => {
@@ -22,3 +25,4 @@ const Searchbar = ({ onSearch, searchInput, setSearchInput, ...restProps }) => {
 }
 
 export default Searchbar
+

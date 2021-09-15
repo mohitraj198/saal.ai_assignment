@@ -1,8 +1,12 @@
 import React from 'react'
 
+/**
+ * @componentName Modal
+ * @description modal
+ */
+
 const Modal = (props) => {
     const { isModalOpen, onClose } = props
-
 
     return (
         <div className={isModalOpen ? "modal open" : "modal"}>

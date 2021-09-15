@@ -217,7 +217,7 @@ a{
     
                         span.user_details_user-name {
                             font-size: 20px;
-                            margin-bottom: 10px;
+                            margin: 10px 0;
                         }
     
                         span.user_details_user-email {
@@ -495,6 +495,7 @@ a{
                         justify-content: space-between;
                         flex-grow: 1;
                         align-items: center;
+                        padding-right: 10px;
 
                         span{
                             flex: 1 1 auto;

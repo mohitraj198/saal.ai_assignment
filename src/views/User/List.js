@@ -9,8 +9,8 @@ import ListHeader from './widgets/ListHeader'
 import Loader from "../../components/Loader"
 
 /**
- * @componentName ErrorBoundary
- * @description Default component to be shown in case Application breaks.
+ * @componentName List
+ * @description display the list view of user's
  */
 
 const List = () => {
@@ -26,32 +26,41 @@ const List = () => {
     const [searchInput, setSearchInput] = useState('')
     const listHeadings = ["", "Name", "Email", "DOB", "Address", "Phone"]
 
+
+    // user data fetching function
     const fetchUserData = async () => {
         setLoading(true)
-        setSearchInput('')
         const userData = await getUsers(currentPage)
-
         if (userData) {
             setUsers(userData)
             setSearchUsers(userData)
         }
-
         setLoading(false)
     }
 
+    // useEffect to handle user fetching data
     useEffect(() => {
         history.push(`?page=${currentPage}`)
         fetchUserData()
-        // eslint-disable-next-line
     }, [currentPage])
 
+
+    // searching 
     const handleSearch = (text) => {
         const filterResult = users.filter(user => {
             const { name: { title, first, last } } = user
-            const name = `${title}. ${first} ${last}`.toLocaleLowerCase()
+            const name = `${title}.${first} ${last}`.toLocaleLowerCase()
             return text === "" ? user : name.includes(text.toLocaleLowerCase())
         })
+        setSearchInput(text);
         setSearchUsers(filterResult)
+    }
+
+
+    // pagination 
+    const handleCurrentPage = (val) => {
+        setCurrentPage(val)
+        setSearchInput('');
     }
 
     return (
@@ -60,7 +69,6 @@ const List = () => {
             <Searchbar
                 onSearch={handleSearch}
                 searchInput={searchInput}
-                setSearchInput={setSearchInput}
             />
 
             <div className="list">
@@ -84,7 +92,7 @@ const List = () => {
             <div className="pagination">
                 <Pagination
                     currentPage={currentPage}
-                    setCurrentPage={setCurrentPage}
+                    setCurrentPage={handleCurrentPage}
                 />
             </div>
         </div>
@@ -92,3 +100,4 @@ const List = () => {
 }
 
 export default List
+

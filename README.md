@@ -1,6 +1,31 @@
-## Project Description
+## Versions
+ * **Node Version :** v12.22.0
+ * **React Version :** 17.0.2
 
+## Profile Viewer
+* This includes the list view of different users
+* User's details(Username, DOB, Email, Address and Phone) are show in list format 
+* Lightbox is provided for thumbnails
+* Other details are show using the modal
+* Search by Username is implemented
+* Pagination is implemented for multiple user 
 
+## Folder Structure
+```
+README.md
+App.js
+index.js
+.env
+src/
+  - assets/
+      - style
+  - components
+  - libs
+  - services
+  - views
+      - User
+          - widgets
+```
 
 ## Available Scripts
 

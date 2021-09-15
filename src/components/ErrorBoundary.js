@@ -1,5 +1,10 @@
 import React from 'react';
 
+/**
+ * @componentName ErrorBoundary
+ * @description display the error at parent level
+ */
+
 export default class ErrorBoundary extends React.PureComponent {
     constructor(props) {
         super(props);
