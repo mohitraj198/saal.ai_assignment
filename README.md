@@ -3,12 +3,12 @@
  * **React Version :** 17.0.2
 
 ## Profile Viewer
-* This includes the list view of different users
-* User's details(Username, DOB, Email, Address and Phone) are show in list format 
-* Lightbox is provided for thumbnails
-* Other details are show using the modal
-* Search by Username is implemented
-* Pagination is implemented for multiple user 
+Application includes the list view of different users
+* User's details(Username, DOB, Email, Address and Phone) are shown in list format 
+* Lightbox to display thumbnails
+* Other details(Username, Email, DOB, Pincode, Address, DOB, Phone) are shown in modal
+* Search by Username
+* Pagination
 
 ## Folder Structure
 ```
