@@ -7,7 +7,6 @@ $color-black-primary: #000000;
 $color-black-secondary: #4D4646;
 $color-white-primary: #ffffff;
 $color-white-secondary: #F5EAEA;
-$color-error: #e21d41;
 
 // Common Styles
 #root {
@@ -121,7 +120,7 @@ a{
     
 
     // user list container
-    .users-list {
+    .list {
         min-width: 80%;
         width: 100%;
         display: flex;
@@ -167,10 +166,10 @@ a{
                             font-size: 12px;
                         }
 
-                        .user-name {
+                        .list_item_name {
                             cursor: pointer;
                         }
-                        .user-name-text{
+                        .list_item_name-text{
                             font-weight: 600;
                             color: $color-green;
                         }
@@ -181,7 +180,7 @@ a{
                         }
                     }
                 }
-                .user-thumbnail {
+                .list_item_thumbnail {
                     align-self: center;
                     height: 100px;
                     width: 100px;
@@ -357,7 +356,7 @@ a{
 @media only screen and (min-width: 481px) {
     .App {
         // user list
-        .users-list {
+        .list {
             .list-container {
                 .list_item {
                     .content {
@@ -367,7 +366,7 @@ a{
                             span{
                                 font-size: 14px;
             
-                                .user-name {
+                                .list_item_name {
                                     cursor: pointer;
                                 }
                                 
@@ -400,14 +399,14 @@ a{
         max-width: 400px;
     }
         // user list
-        .users-list {
+        .list {
             .list-container {
                 .list_item {
                     flex-direction: row;
                     span{
                         font-size: 16px;  
                     }
-                    .user-thumbnail {
+                    .list_item_thumbnail {
                         justify-self: center;
                         height: 100px;
                         width: 100px;
@@ -429,7 +428,7 @@ a{
 @media only screen and (min-width: 1025px) {
     .App {
         // user list
-        .users-list {
+        .list {
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
@@ -441,7 +440,7 @@ a{
                 background-color: $color-green;
                 box-shadow: 0 1px 2px 0 rgba(0,0,0,0.2);
                 border-radius: 10px;
-                margin-bottom: 20px;
+                margin-bottom: 10px;
                 color: $color-white-primary;
                 font-weight: 500;
     
@@ -510,7 +509,7 @@ a{
                             span{
                                 font-size: 16px;
                                 text-align: left;
-                                .user-name {
+                                .list_item_name {
                                     cursor: pointer;
                                 }
                             }
@@ -519,14 +518,14 @@ a{
                             }
                         }
 
-                        .user-name {
+                        .list_item_name {
                             cursor: pointer;
                             width: 14%;
                             span {
                                 text-align: left;
                             }
                         }
-                        .user-email{
+                        .list_item_email{
                             width: 20%;
                             
                             span{
@@ -534,20 +533,20 @@ a{
                                 text-align: center;
                             }  
                         }
-                        .user-phone{
+                        .list_item_phone{
                             width: 15%;
                             span {
                                 text-align: right;
                             }
                         }
-                        .user-address{
+                        .list_item_address{
                             width: 30%;
                             padding: 0 10px;
                             span {
                                 text-align: center;
                             }
                         }
-                        .user-dob {
+                        .list_item_dob {
                             width: 15%;
                             span {
                                 text-align: center;
@@ -555,7 +554,7 @@ a{
                         }
                     }
     
-                    .user-thumbnail {
+                    .list_item_thumbnail {
                         height: 40px;
                         width: 40px;
                         border-radius: 50%;

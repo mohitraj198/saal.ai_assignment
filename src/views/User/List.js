@@ -2,28 +2,33 @@ import React, { useState, useEffect } from 'react'
 import { useHistory } from "react-router-dom"
 import queryString from 'query-string';
 import Pagination from './widgets/Pagination'
-import Searchbar from './widgets/Searchbar'
+import Searchbar from '../../components/Searchbar'
 import ListItem from './widgets/ListItem'
 import { getUsers } from "../../services/user"
-import ListHeader from './widgets/ListHeader';
+import ListHeader from './widgets/ListHeader'
 import Loader from "../../components/Loader"
+
+/**
+ * @componentName ErrorBoundary
+ * @description Default component to be shown in case Application breaks.
+ */
 
 const List = () => {
     const history = useHistory()
     const location = history.location
-    const query = queryString.parse(location.search);
+    const query = queryString.parse(location.search)
     const page = Number(query.page)
 
     const [users, setUsers] = useState([])
     const [currentPage, setCurrentPage] = useState(page ? page : 1)
     const [loading, setLoading] = useState(true)
     const [searchUsers, setSearchUsers] = useState([])
-    const [searchUser, setSearchUser] = useState('')
+    const [searchInput, setSearchInput] = useState('')
     const listHeadings = ["", "Name", "Email", "DOB", "Address", "Phone"]
 
     const fetchUserData = async () => {
         setLoading(true)
-        setSearchUser('')
+        setSearchInput('')
         const userData = await getUsers(currentPage)
 
         if (userData) {
@@ -35,22 +40,30 @@ const List = () => {
     }
 
     useEffect(() => {
-        history.push(`?page=${currentPage}`);
+        history.push(`?page=${currentPage}`)
         fetchUserData()
         // eslint-disable-next-line
     }, [currentPage])
+
+    const handleSearch = (text) => {
+        const filterResult = users.filter(user => {
+            const { name: { title, first, last } } = user
+            const name = `${title}. ${first} ${last}`.toLocaleLowerCase()
+            return text === "" ? user : name.includes(text.toLocaleLowerCase())
+        })
+        setSearchUsers(filterResult)
+    }
 
     return (
         <div className="users-container">
 
             <Searchbar
-                users={users}
-                setSearchUsers={setSearchUsers}
-                searchUser={searchUser}
-                setSearchUser={setSearchUser}
+                onSearch={handleSearch}
+                searchInput={searchInput}
+                setSearchInput={setSearchInput}
             />
 
-            <div className="users-list">
+            <div className="list">
                 <ListHeader listHeadings={listHeadings} />
                 <div className="list-container">
                     <Loader loading={loading}>

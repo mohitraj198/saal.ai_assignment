@@ -35,27 +35,27 @@ const ListItem = ({ user }) => {
 
     return (
         <div className="list_item">
-            <img onClick={handleLightbox} className="user-thumbnail" src={thumbnail} alt="User's Profile" />
+            <img onClick={handleLightbox} className="list_item_thumbnail" src={thumbnail} alt="User's Profile" />
             <div className="content">
-                <div className="row user-name">
+                <div className="row list_item_name">
                     <span className="heading">Name:</span>
-                    <span onClick={handleUserModal} className="user-name-text">{title}. {first} {last}</span>
+                    <span onClick={handleUserModal} className="list_item_name-text">{title}. {first} {last}</span>
                 </div>
-                <div className="row user-email">
+                <div className="row list_item_email">
                     <span className="heading">Email:</span>
                     <span >{email}</span>
                 </div>
-                <div className="row user-dob">
+                <div className="row list_item_dob">
                     <span className="heading">DOB:</span>
                     <span >
                         {moment(date).format("DD/MM/YYYY")}
                     </span>
                 </div>
-                <div className="row user-address">
+                <div className="row list_item_address">
                     <span className="heading">Address:</span>
                     <span >{number} {name}, {city} {country}, {postcode}</span>
                 </div>
-                <div className="row user-phone">
+                <div className="row list_item_phone">
                     <span className="heading">Phone:</span>
                     <span >{formattedPhone(phone)}</span>
                 </div>
