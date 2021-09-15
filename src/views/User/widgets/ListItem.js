@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import ImageLightbox from '../../../components/ImageLightbox'
 import Modal from '../../../components/Modal'
-import UserDetails from './UserDetails'
+import UserDetail from './UserDetail'
 import moment from 'moment'
+import { formattedPhone } from "../../../libs/collectionUtils"
 
 const ListItem = ({ user }) => {
-    // User's Details
     const {
         picture: { thumbnail, large },
         name: { title, first, last },
@@ -19,11 +19,6 @@ const ListItem = ({ user }) => {
         dob: { date },
         phone
     } = user
-
-    // Formatting Mobile Number(Remove hyphen)
-    const formattedPhone = phone.replace(/-/g, "")
-    // Formatting Date
-    const formattedDate = moment(date).format("DD/MM/YYYY")
 
     const [isImageLightboxOpen, setIsImageLightboxOpen] = useState(false)
     const [isModalOpen, setIsModalOpen] = useState(false)
@@ -53,7 +48,7 @@ const ListItem = ({ user }) => {
                 <div className="row user-dob">
                     <span className="heading">DOB:</span>
                     <span >
-                        {formattedDate}
+                        {moment(date).format("DD/MM/YYYY")}
                     </span>
                 </div>
                 <div className="row user-address">
@@ -62,7 +57,7 @@ const ListItem = ({ user }) => {
                 </div>
                 <div className="row user-phone">
                     <span className="heading">Phone:</span>
-                    <span >{formattedPhone}</span>
+                    <span >{formattedPhone(phone)}</span>
                 </div>
             </div>
 
@@ -73,7 +68,7 @@ const ListItem = ({ user }) => {
             />
 
             <Modal isModalOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-                <UserDetails user={user} />
+                <UserDetail user={user} />
             </Modal>
         </div>
     )

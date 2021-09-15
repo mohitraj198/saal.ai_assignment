@@ -1,8 +1,8 @@
 import React from 'react'
 import moment from 'moment'
+import { formattedPhone } from "../../../libs/collectionUtils"
 
-const UserDetails = ({ user }) => {
-    // User's Details
+const UserDetail = ({ user }) => {
     const {
         name: { title, first, last },
         picture: { large },
@@ -19,10 +19,6 @@ const UserDetails = ({ user }) => {
         phone
     } = user
 
-    // Formatting Mobile Number(Remove hyphen)
-    const formattedPhone = phone.replace(/-/g, "")
-    // Formatting Date
-    const formattedDate = moment(date).format("DD/MM/YYYY")
 
     return (
         <div className="user_details-container">
@@ -48,16 +44,16 @@ const UserDetails = ({ user }) => {
                 <div className="row">
                     <span className="heading">DOB</span>
                     <span className="detail">
-                        {formattedDate}
+                        {moment(date).format("DD/MM/YYYY")}
                     </span>
                 </div>
                 <div className="row">
                     <span className="heading">Phone</span>
-                    <span className="detail">{formattedPhone}</span>
+                    <span className="detail">{formattedPhone(phone)}</span>
                 </div>
             </div>
         </div>
     )
 }
 
-export default UserDetails
+export default UserDetail

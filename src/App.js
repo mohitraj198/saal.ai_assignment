@@ -5,14 +5,14 @@ import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-d
 
 function App() {
   return (
-    <Router>
-      <div className="App">
+    <div className="App">
+      <Router>
         <Switch>
           <Redirect exact from="/" to="/users" />
           <Route path="/users" component={List} />
         </Switch>
-      </div>
-    </Router>
+      </Router>
+    </div >
   );
 }
 

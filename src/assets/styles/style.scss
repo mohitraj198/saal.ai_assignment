@@ -133,7 +133,7 @@ a{
             display: none;
         }
 
-        .user-list-container {
+        .list-container {
             margin-bottom: 20px;
             display: flex;
             flex-direction: column;
@@ -358,7 +358,7 @@ a{
     .App {
         // user list
         .users-list {
-            .user-list-container {
+            .list-container {
                 .list_item {
                     .content {
                         .row {
@@ -401,7 +401,7 @@ a{
     }
         // user list
         .users-list {
-            .user-list-container {
+            .list-container {
                 .list_item {
                     flex-direction: row;
                     span{
@@ -456,27 +456,33 @@ a{
 
                 .list-header-headingName {
                     width: 13%;
+                    text-align: left;
                 }
                 .list-header-headingEmail {
                     width: 20%;
+                    text-align: center;
                 }
                 .list-header-headingDOB {
                     width: 15%;
+                    text-align: center;
                 }
                 .list-header-headingAddress {
+                    text-align: center;
                     width: 30%;
                 }
                 .list-header-headingPhone {
                     width: 15%;
+                    text-align: right;
+                    padding-right: 40px;
                 }
             }
 
-            .user-list-container {
+            .list-container {
                 height: 80%;
                 
                 .list_item {
                     display: flex;
-                    align-items: flex-start;
+                    align-items: center;
                     background-color: $color-white-primary;
                     box-shadow: 0 1px 2px 0 rgba(0,0,0,0.2);
                     transition: 0.3s;
@@ -516,22 +522,36 @@ a{
                         .user-name {
                             cursor: pointer;
                             width: 14%;
+                            span {
+                                text-align: left;
+                            }
                         }
                         .user-email{
                             width: 20%;
+                            
                             span{
                                 overflow-wrap: anywhere;
+                                text-align: center;
                             }  
                         }
                         .user-phone{
                             width: 15%;
+                            span {
+                                text-align: right;
+                            }
                         }
                         .user-address{
                             width: 30%;
                             padding: 0 10px;
+                            span {
+                                text-align: center;
+                            }
                         }
                         .user-dob {
                             width: 15%;
+                            span {
+                                text-align: center;
+                            }  
                         }
                     }
     

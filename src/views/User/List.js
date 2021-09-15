@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { useHistory } from "react-router-dom"
 import queryString from 'query-string';
-import Pagination from '../../components/Pagination'
-import Searchbar from '../../components/Searchbar'
+import Pagination from './widgets/Pagination'
+import Searchbar from './widgets/Searchbar'
 import ListItem from './widgets/ListItem'
 import { getUsers } from "../../services/user"
 import ListHeader from './widgets/ListHeader';
@@ -52,7 +52,7 @@ const List = () => {
 
             <div className="users-list">
                 <ListHeader listHeadings={listHeadings} />
-                <div className="user-list-container">
+                <div className="list-container">
                     <Loader loading={loading}>
                         {
                             !searchUsers.length
