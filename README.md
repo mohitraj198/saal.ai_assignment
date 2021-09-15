@@ -31,6 +31,11 @@ src/
 
 In the project directory, you can run:
 
+### `npm install`
+
+This will download all dependencies. 
+Run inside the project folder.
+
 ### `npm start`
 
 Runs the app in the development mode.\
